@@ -46,8 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="Login.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="GoogleSearch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

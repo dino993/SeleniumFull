@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.UI;
 namespace FirstWebDriverProject
 {
 	[TestFixture()]
-	public class Test : BaseTest
+	public class GoogleSearch : BaseTest
 	{
 		[Test()]
 		public void TestCase()
