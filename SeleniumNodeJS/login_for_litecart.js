@@ -1,5 +1,8 @@
 var webdriver = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
+    safari = require('selenium-webdriver/safari'),
+    phantomjs = require('selenium-webdriver/phantomjs'),
+    firefox = require('selenium-webdriver/firefox'),
     By = webdriver.By,
     until = webdriver.until,
     test = require('selenium-webdriver/testing');
@@ -12,6 +15,7 @@ test.describe('Login Admin to literact', function() {
         options.addArguments(["start-fullscreen"]);
 
         driver = new webdriver.Builder()
+            //.withCapabilities({'marionette': true})
             .forBrowser('chrome')
             .setChromeOptions(options)
             .build();
