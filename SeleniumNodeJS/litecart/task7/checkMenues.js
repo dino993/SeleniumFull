@@ -6,9 +6,9 @@ var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until,
     test = require('selenium-webdriver/testing'),
-    generalParameters = require('./generalParameters');
+    generalParameters = require('./../generalParameters');
 
-test.describe('Tasks', function() {
+test.describe('Task 7', function() {
     var driver;
 
     test.before(function() {
@@ -60,11 +60,10 @@ test.describe('Tasks', function() {
                     subMenues.click();
 
                     checkTitle(expectedMenues[i].expectedTitles[j]);
-
                 }
             }
         }
-        
+
     });
 
     /**
@@ -81,6 +80,11 @@ test.describe('Tasks', function() {
             });
         });
     }
+
+
+    test.it('Task 8 - check  is sticker  single', function() {
+
+    });
 
     test.after(function() {
         driver.sleep(2000);

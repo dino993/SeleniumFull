@@ -11,7 +11,6 @@ var expectedMenues = [
         main: "'Appearence'",
         inserted: ["'Template'", "'Logotype'"],
         expectedTitles: ["' Template'", "' Logotype'"]
-
     },
     {
         main: "'Catalog'",
