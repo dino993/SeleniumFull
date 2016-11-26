@@ -53,7 +53,7 @@ test.describe('Check all menues', function() {
                     "' Catalog'", "' Product Groups'", "' Option Groups'",
                     "' Manufacturers'", "' Suppliers'", "' Delivery Statuses'",
                     "' Sold Out Statuses'", "' Quantity Units'", "' CSV Import/Export'"
-                ],
+                ]
             },
             {
                 main: "'Countries'",
@@ -158,12 +158,7 @@ test.describe('Check all menues', function() {
             menues.click();
 
             if (expectedMenues[i].inserted.length === 0) {
-                // Проверка наличия заголовка и его текста
-                driver.findElement(By.xpath("//h1[text()=" + expectedMenues[i].expectedTitles[0] + "]")).then(function(titles) {
-                    titles.getText().then(function(text) {
-                        console.log("---------Найден Заголовк = " + text);
-                    });
-                });
+                checkTitle(expectedMenues[i].expectedTitles[0]);
             } else {
                 // Обход подменю.
                 for(var j = 0; j < expectedMenues[i].inserted.length; j++) {
@@ -174,17 +169,28 @@ test.describe('Check all menues', function() {
                     });
                     subMenues.click();
 
-                    // Проверка наличия заголовка и его текста
-                    driver.findElement(By.xpath("//h1[text()=" + expectedMenues[i].expectedTitles[j] + "]")).then(function(titles) {
-                        titles.getText().then(function(text) {
-                            console.log("---------Найден Заголовк = " + text);
-                        });
-                    });
+                    checkTitle(expectedMenues[i].expectedTitles[j]);
+
                 }
             }
         }
         
     });
+
+    /**
+     * Фуннкция проверяет наличие заголовка и выводит его текст.
+     *
+     * @param {sting} title Ожтдаемый заголовк
+     * @return {void}
+     */
+    function checkTitle(title) {
+        // Проверка наличия заголовка и его текста
+        driver.findElement(By.xpath("//h1[text()=" + title + "]")).then(function (titles) {
+            titles.getText().then(function (text) {
+                console.log("---------Найден Заголовк = " + text);
+            });
+        });
+    }
 
     test.after(function() {
         driver.sleep(2000);
