@@ -82,10 +82,6 @@ test.describe('Task 7', function() {
     }
 
 
-    test.it('Task 8 - check  is sticker  single', function() {
-
-    });
-
     test.after(function() {
         driver.sleep(2000);
         driver.quit();
