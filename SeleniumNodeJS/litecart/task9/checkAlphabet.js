@@ -37,6 +37,7 @@ test.describe('Task 7', function() {
     });
 
     test.it('Task 9_1_a - check countries alphabet', function() {
+        console.log("\n-----------------Запускаем тест Task 9_1_a");
         var counrtiesList = [];
 
         driver.get('http://localhost/litecart/admin/?app=countries&doc=countries').then(
@@ -54,14 +55,17 @@ test.describe('Task 7', function() {
                         });
                     })(i);
                 }).then(function(){
+
                     console.log("Длина массива стран = " + counrtiesList.length + "\n");
                     assert.ok(isArraySortedByAlphabet(counrtiesList), "Массив не отсортирован по алфавиту");
+                    console.log("Массив отсортирован по алфавиту\n");
 
                 });
             });
     });
 
     test.it('Task 9_1_b - check zones alphabet', function() {
+        console.log("\n-----------------Запускаем тест Task 9_1_b");
         var zonesList = [];
         var indexesContriesWithZones = [];
         driver.get('http://localhost/litecart/admin/?app=countries&doc=countries').then(
@@ -85,6 +89,7 @@ test.describe('Task 7', function() {
 
                         for (var i = 0; i < indexesContriesWithZones.length; i++) (function (x) {
                             driver.findElements(By.css(".fa.fa-pencil")).then(function (pencils) {
+
                             pencils[indexesContriesWithZones[x]].click().then(
 
                                 getColumnNameIndex("Name")).then(function () {
@@ -100,22 +105,61 @@ test.describe('Task 7', function() {
                                             });
                                         })(i);
                                     }).then(function () {
+
                                         console.log("Длина массива зон = " + zonesList.length + "\n");
                                         assert.ok(isArraySortedByAlphabet(zonesList), "Массив не отсортирован по алфавиту");
+                                        console.log("Массив отсортирован по алфавиту\n");
                                         zonesList = [];
                                     }).then(
+
                                         driver.get('http://localhost/litecart/admin/?app=countries&doc=countries'));
                                 });
                             });
                         })(i);
                 });
-
-                });
-
+            });
     });
 
     test.it('Task 9_2 - check zones alphabet', function() {
+        console.log("\n-----------------Запускаем тест Task 9_2");
+        var zonesList = [];
+        driver.get('http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones').then(
 
+            getColumnNameIndex("Name")).then(function () {
+                var cssSelecrotForCountries = ".row > td:nth-child(" + columnIndex + ")";
+                driver.findElements(By.css(cssSelecrotForCountries)).then(function (countries) {
+
+                    for (var i = 0; i < countries.length; i++) (function (x) {
+                        driver.findElements(By.css(".fa.fa-pencil")).then(function (pencils) {
+
+                            pencils[x].click().then(
+
+                                getColumnNameIndex("Zone")).then(function () {
+
+                                    var cssSelecrotForZones = ".dataTable > tbody > tr > td:nth-child(" + columnIndex + ") > [name*=zone] > [selected=selected]";
+                                    driver.findElements(By.css(cssSelecrotForZones)).then(function (zones) {
+
+                                        for (var i = 0; i < zones.length; i++) (function (x) {
+                                            zones[x].getAttribute("textContent").then(function (zoneText) {
+
+                                                zonesList.push(zoneText);
+
+                                            });
+                                        })(i);
+                                    }).then(function () {
+
+                                        console.log("Длина массива зон = " + zonesList.length + "\n");
+                                        assert.ok(isArraySortedByAlphabet(zonesList), "Массив не отсортирован по алфавиту");
+                                        console.log("Массив отсортирован по алфавиту\n");
+                                        zonesList = [];
+                                    }).then(
+
+                                        driver.get('http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones'));
+                                });
+                        });
+                    })(i);
+                })
+            });
 
     });
 
@@ -135,7 +179,7 @@ test.describe('Task 7', function() {
 
         for(var i = 0; i < newSortedArray.length; i++) {
             if (newSortedArray[i] !== arrayForCheck[i]) {
-                return false
+                return false;
             }
         }
         return true;
@@ -148,11 +192,12 @@ test.describe('Task 7', function() {
      * @return {int} index индекс столбца
      */
     function getColumnNameIndex(columnName) {
+
         driver.findElements(By.css("tr.header>th")).then(function(columns) {
             for(var i = 0; i < columns.length; i++) (function (x) {
                 columns[x].getAttribute("textContent").then(function (columnText) {
                     if (columnText === columnName) {
-                        console.log("\nИндекс стоблца " + columnText + " = " + parseInt(x + 1) + "\n");
+                        console.log("\nИндекс стоблца " + columnText + " = " + parseInt(x + 1));
                         columnIndex = parseInt(x + 1);
                     }
                 });
