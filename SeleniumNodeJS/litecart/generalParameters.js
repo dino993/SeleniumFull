@@ -118,3 +118,46 @@ var expectedMenues = [
     }
 ];
 module.exports.expectedMenues = expectedMenues;
+
+var XGenerate = {};
+
+XGenerate.rand = function (min, max) {
+    var rand = min - 0.5 + Math.random() * (max - min + 1);
+    rand = Math.round(rand);
+    return rand;
+};
+
+XGenerate.randNumber = function (length, fzero) {
+    length = length || 10;
+    fzero = (fzero === undefined) ? false : fzero;
+    var result = '';
+    for (var i = 1; i <= length; i++) {
+        if (i == 1) {
+            result += XGenerate.rand(fzero ? 0 : 1, 9);
+        } else {
+            result += XGenerate.rand(0, 9);
+        }
+    }
+    return result;
+};
+
+XGenerate.randString = function (len) {
+    len = len || 10;
+    var arr = [];
+
+    arr[0] = XGenerate.rand(0, 9);
+    arr[1] = XGenerate.rand(0, 9);
+
+    arr[2] = 0;
+    arr[3] = 1;
+
+    arr[4] = XGenerate.rand(0, 9);
+    arr[5] = XGenerate.rand(0, 9);
+    arr[6] = XGenerate.rand(0, 9);
+    arr[7] = XGenerate.rand(0, 9);
+    arr[8] = XGenerate.rand(0, 9);
+
+
+    return arr.join('');
+};
+module.exports.XGenerate = XGenerate;
