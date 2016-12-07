@@ -8,7 +8,7 @@ var webdriver = require('selenium-webdriver'),
     test = require('selenium-webdriver/testing'),
     assert = require('assert');
 
-test.describe('Task 10', function() {
+test.describe('Task 13', function() {
     var driver;
 
     test.before(function() {
