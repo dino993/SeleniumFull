@@ -52,7 +52,7 @@ test.describe('Task 17', function() {
                         });
                     });
 
-                    
+
                     driver.takeScreenshot().then(
                         function(image) {
                             fs.writeFile('screen' + x + '.png', image, 'base64', function(err) {
