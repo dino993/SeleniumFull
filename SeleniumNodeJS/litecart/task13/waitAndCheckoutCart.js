@@ -60,7 +60,7 @@ test.describe('Task 13', function() {
                     driver.findElement(By.css("[name=cart_form]  a > strong")).getText().then(function(duckTitleText){
 
                         // Проверяем, что приплыла утка.
-                        driver.findElement(By.xpath("//strong[text()='"+ duckTitleText + "']")).then(function(duckTitle){
+                        driver.findElement(By.xpath("//strong[text()='" + duckTitleText + "']")).then(function(duckTitle){
 
                             driver.wait(until.elementIsVisible(duckTitle), 5000/*ms*/).then(function(){
 
